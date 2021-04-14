@@ -31,6 +31,13 @@ app.get('/beers', (req, res) => {
    })
 
 });
+app.get('/beers/beer-:id',(req, res)=>{
+  punkAPI.getBeer(req.params.id)
+  .then((success)=>{
+    res.render('beerDetails.hbs', {success} )
+  })
+  
+})
 app.get('/random-beers', (req, res) => {
   punkAPI.getRandom()
   .then((success)=>{
@@ -41,7 +48,8 @@ app.get('/random-beers', (req, res) => {
 
   })
 
- 
 });
+
+
 
 app.listen(3000, () => console.log('🏃‍ on port 3000'));
