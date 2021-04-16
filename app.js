@@ -22,30 +22,32 @@ app.get('/', (req, res) => {
 });
 app.get('/beers', (req, res) => {
   punkAPI.getBeers()
-   .then((success)=>{
-    //  console.log(success)
-    res.render('beers.hbs', {allBeers : success});
+   .then((beersObj)=>{
+    //  console.log(beersObj)
+    res.render('beers.hbs', {allBeers : beersObj});
    })
-   .catch((fail)=>{
-
+   .catch((error)=>{
+    console.log(error)
    })
 
 });
 app.get('/beers/beer-:id',(req, res)=>{
   punkAPI.getBeer(req.params.id)
-  .then((success)=>{
-    res.render('beerDetails.hbs', {success} )
+  .then((beersObj)=>{
+    res.render('beerDetails.hbs', {beersObj} )
   })
+  .catch((error)=>{
+    console.log(error)
+   })
   
 })
 app.get('/random-beers', (req, res) => {
   punkAPI.getRandom()
-  .then((success)=>{
-   //  console.log(success)
-   res.render('random-beers.hbs', {random: success});
+  .then((beersObj)=>{
+   res.render('random-beers.hbs', {random: beersObj});
   })
-  .catch((fail)=>{
-
+  .catch((error)=>{
+    console.log(error)
   })
 
 });
